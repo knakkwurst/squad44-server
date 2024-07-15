@@ -1,0 +1,17 @@
+services:
+  squad44:
+    image: sknnr/squad44-server:latest
+    ports:
+      - "7787:7787/udp"
+      - "7788:7788/udp"
+      - "27165:27165/udp"
+      - "27166:27166/udp"
+      - "21114:21114/tcp"
+    env_file:
+      - default.env
+    volumes:
+      - squad44-persistent-data:/home/steam/squad44
+    stop_grace_period: 90s
+
+volumes:
+  squad44-persistent-data:

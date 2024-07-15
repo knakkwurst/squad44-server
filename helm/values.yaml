@@ -1,0 +1,38 @@
+image:
+  repository: sknnr/squad44-server
+  tag: latest
+
+service:
+  type: LoadBalancer
+  externalIPs: []
+  annotations: {}
+
+resources:
+  requests:
+    memory: 32G
+    cpu: 6.0
+
+volumes:
+  dataPVC:
+    size: 100Gi
+  storageClassName: ""
+
+config:
+  serverName: "Soulmask Containerized"
+  maxPlayers: 80
+  reservedSlots: 0
+  gamePort: 7787
+  queryPort: 27165
+  rconPort: 21114
+  rconPassword: "PLEASE-CHANGE-ME"
+  randomMapRotation: "NONE"
+  preventTeamChangeIfUnbalanced: "true"
+  numPlayersDiffForTeamChange: 3
+  mapVoting: "false"
+  serverMessageInterval: 600
+  tkAutokickEnabled: "true"
+  adminsB64Encoded: ""
+  mapRotationB64Encoded: ""
+  mapVotingB64Encoded: ""
+  motdBase64Encoded: ""
+  serverMessageB64Encoded: ""
