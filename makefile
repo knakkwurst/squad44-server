@@ -13,7 +13,7 @@ PODMAN_BUILD_OPTS := --build-arg="IMAGE_VERSION=$(GIT_HASH)-devel" --format dock
 PODMAN_RUN_OPTS := --name $(CONTAINER_NAME) --stop-timeout 90 -d --mount type=volume,source=$(VOLUME_NAME),target=/home/steam/squad44
 
 # Makefile targets
-.PHONY: build run run-no-vol clean-all clean-build clean-volume clean-image
+.PHONY: build volume run clean-all clean-build clean-volume clean-image
 
 build:
 	podman build $(PODMAN_BUILD_OPTS) -t $(IMAGE_REF):latest ./container
