@@ -104,6 +104,12 @@ if [ -n "${SERVER_MESSAGE_B64_ENCODED}" ]; then
     printf "${SERVER_MESSAGE_B64_ENCODED}" | base64 -d > $SQUAD44_CONFIG_PATH/ServerMessages.cfg
 fi
 
+if [ -n "${SERVER_LOGO_B64_ENCODED}" ]; then
+    echo "$(timestamp) INFO: Decoding ServerLogo.png base64 and writing to file"
+    printf "${SERVER_LOGO_B64_ENCODED}" | base64 -d > $SQUAD44_CONFIG_PATH/ServerLogo.png
+    chmod 755 $SQUAD44_CONFIG_PATH/ServerLogo.png
+fi
+
 # Build launch arguments
 echo "$(timestamp) INFO: Constructing launch arguments"
 LAUNCH_ARGS="Port=${GAME_PORT} QueryPort=${QUERY_PORT} RANDOM=${RANDOM_MAP_ROTATION}"

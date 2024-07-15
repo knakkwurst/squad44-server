@@ -36,3 +36,4 @@ config:
   mapVotingB64Encoded: ""
   motdBase64Encoded: ""
   serverMessageB64Encoded: ""
+  serverLogoB64Encoded: ""
