@@ -1,1 +1,3 @@
+# Ignore local config directory as I store my modified config files here before 
+# base64 encoding and don't want to accidentally commit
 config/

@@ -3,7 +3,7 @@ FROM debian:12-slim
 ARG CONTAINER_GID=10000
 ARG CONTAINER_UID=10000
 
-ARG MAINTAINER=""
+ARG MAINTAINER="https://github.com/jsknnr/squad44-server"
 ARG IMAGE_VERSION="v1.0.0-devel"
 
 ENV DEBIAN_FRONTEND="noninteractive"
