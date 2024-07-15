@@ -63,7 +63,7 @@ fi
 
 # Update Server.cfg configuration
 echo "$(timestamp) INFO: Updating Server.cfg configuration options"
-sed -i "s/ServerName=\"[^\"]*\"/ServerName=\"${SERVER_NAME}\"/" $SQUAD44_CONFIG_PATH/Server.cfg
+sed -i "s/ServerName=.*$/ServerName=${SERVER_NAME}/" $SQUAD44_CONFIG_PATH/Server.cfg
 sed -i "s/MaxPlayers=.*$/MaxPlayers=${MAX_PLAYERS}/" $SQUAD44_CONFIG_PATH/Server.cfg
 sed -i "s/NumReservedSlots=.*$/NumReservedSlots=${RESERVED_SLOTS}/" $SQUAD44_CONFIG_PATH/Server.cfg
 sed -i "s/PreventTeamChangeIfUnbalanced=.*$/PreventTeamChangeIfUnbalanced=${PREVENT_TEAM_CHANGE_IF_UNBALANCED}/" $SQUAD44_CONFIG_PATH/Server.cfg
@@ -91,6 +91,7 @@ fi
 if [ -n "${MAP_VOTING_B64_ENCODED}" ]; then
     echo "$(timestamp) INFO: Decoding MapVoting.cfg base64 and writing to file"
     printf "${MAP_VOTING_B64_ENCODED}" | base64 -d > $SQUAD44_CONFIG_PATH/MapVoting.cfg
+    chmod 755 $SQUAD44_CONFIG_PATH/MapVoting.cfg
 fi
 
 if [ -n "${MOTD_B64_ENCODED}" ]; then
