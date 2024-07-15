@@ -17,9 +17,9 @@ If you would like to pass configuration files such as Admins.cfg and MapRotation
 
 1) Make a copy of the config file from `./example_configs` from this repo
 2) Edit the copy of the file with the values you desire, then save
-3) Base64 encode the file with the following command for example: `ADMINS=$(cat Admins.cfg | base64)`
+3) Base64 encode the file with the following command for example: `ADMINS=$(cat Admins.cfg | base64 -w 0)`
     - This creates a local variable called ADMINS that holds the base64 encoded value of the Admins.cfg file
-    - you can print the value back out like this: `printf $ADMINS`
+    - you can print the value back out like this: `printf "${ADMINS}"`
     - In this example, you could then set `ADMINS_B64_ENCODED=${ADMINS}`
     - You can also just copy and paste that value into a compose file or however you plan on launching the container
     - When the container launches it will decode that value and write it out to the appropriate file on the server
