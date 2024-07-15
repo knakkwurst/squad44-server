@@ -1,0 +1,96 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Chart.Name }}"
+  labels:
+    app: "{{ .Chart.Name }}"
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: "{{ .Release.Name }}"
+    heritage: "{{ .Release.Service }}"
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "{{ .Chart.Name }}"
+      release: "{{ .Release.Name }}"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Chart.Name }}"
+        release: "{{ .Release.Name }}"
+    spec:
+      securityContext:
+        runAsUser: 10000
+        runAsGroup: 10000
+        fsGroup: 10000
+      containers:
+      - name: "{{ .Chart.Name }}"
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: Always
+        resources:
+{{ toYaml .Values.resources | indent 10 }}
+        env:
+        - name: SERVER_NAME
+          value: {{ .Values.config.serverName | int }}
+        - name: GAME_PORT
+          value: {{ .Values.config.gamePort | int }}
+        - name: QUERY_PORT
+          value: {{ .Values.config.queryPort | int }}
+        - name: RCON_PORT
+          value: {{ .Values.config.rconPort | int }}
+        - name: MAX_PLAYERS
+          value: {{ .Values.config.maxPlayers | int }}
+        - name: RESERVED_SLOTS
+          value: {{ .Values.config.reservedSlots | int }}
+        - name: RCON_PASSWORD
+          value: {{ .Values.config.rconPassword | quote }}
+        - name: RANDOM_MAP_ROTATION
+          value: {{ .Values.config.randomMapRotation | quote }}
+        - name: PREVENT_TEAM_CHANGE_IF_UNBALANCED
+          value: {{ .Values.config.preventTeamChangeIfUnbalanced | quote }}
+        - name: NUM_PLAYERS_DIFF_FOR_TEAM_CHANGE
+          value: {{ .Values.config.numPlayersDiffForTeamChange | int }}
+        - name: MAP_VOTING
+          value: {{ .Values.config.mapVoting | quote }}
+        - name: SERVER_MESSAGE_INTERVAL
+          value: {{ .Values.config.serverMessageInterval | int }}
+        - name: TK_AUTOKICK_ENABLED
+          value: {{ .Values.config.tkAutokickEnabled | quote }}
+        - name: ADMINS_B64_ENCODED
+          value: {{ .Values.config.adminsB64Encoded | quote }}
+        - name: MAP_ROTATION_B64_ENCODED
+          value: {{ .Values.config.mapRotationB64Encoded | quote }}
+        - name: MAP_VOTING_B64_ENCODED
+          value: {{ .Values.config.mapVotingB64Encoded | quote }}
+        - name: MOTD_B64_ENCODED
+          value: {{ .Values.config.motdBase64Encoded | quote }}
+        - name: SERVER_MESSAGE_B64_ENCODED
+          value: {{ .Values.config.serverMessageB64Encoded | quote }}
+        ports:
+        - name: game-port
+          containerPort: {{ .Values.config.gamePort | int }}
+          protocol: UDP
+        - name: game-port-2
+          containerPort: {{ int (add .Values.config.gamePort 1) }}
+          protocol: UDP
+        - name: query-port
+          containerPort: {{ .Values.config.queryPort | int }}
+          protocol: UDP
+        - name: query-port-2
+          containerPort: {{ int (add .Values.config.queryPort 1) }}
+          protocol: UDP
+        - name: rcon-port
+          containerPort: {{ .Values.config.rconPort | int }}
+          protocol: TCP
+        volumeMounts:
+        - name: data
+          mountPath: /home/steam/squad44
+        securityContext:
+          allowPrivilegeEscalation: false
+      volumes:
+      - name: data
+        persistentVolumeClaim:
+          claimName: "{{ .Chart.Name }}-data"
+      terminationGracePeriodSeconds: 90

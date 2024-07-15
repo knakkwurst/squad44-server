@@ -1,0 +1,10 @@
+apiVersion: v1
+name: squad44-server
+version: 1.0.0
+description: Squad44 dedicated server.
+keywords:
+- game
+- server
+- squad44
+- postscriptum
+home: https://github.com/jsknnr/squad44-server
