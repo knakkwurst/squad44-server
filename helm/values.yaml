@@ -18,7 +18,7 @@ volumes:
   storageClassName: ""
 
 config:
-  serverName: "Soulmask Containerized"
+  serverName: "Squad44 Containerized"
   maxPlayers: 80
   reservedSlots: 0
   gamePort: 7787
