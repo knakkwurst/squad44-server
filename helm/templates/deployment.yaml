@@ -35,15 +35,15 @@ spec:
         - name: SERVER_NAME
           value: {{ .Values.config.serverName | quote }}
         - name: GAME_PORT
-          value: {{ .Values.config.gamePort | int }}
+          value: {{ .Values.config.gamePort | quote }}
         - name: QUERY_PORT
-          value: {{ .Values.config.queryPort | int }}
+          value: {{ .Values.config.queryPort | quote }}
         - name: RCON_PORT
-          value: {{ .Values.config.rconPort | int }}
+          value: {{ .Values.config.rconPort | quote }}
         - name: MAX_PLAYERS
-          value: {{ .Values.config.maxPlayers | int }}
+          value: {{ .Values.config.maxPlayers | quote }}
         - name: RESERVED_SLOTS
-          value: {{ .Values.config.reservedSlots | int }}
+          value: {{ .Values.config.reservedSlots | quote }}
         - name: RCON_PASSWORD
           value: {{ .Values.config.rconPassword | quote }}
         - name: RANDOM_MAP_ROTATION
@@ -51,11 +51,11 @@ spec:
         - name: PREVENT_TEAM_CHANGE_IF_UNBALANCED
           value: {{ .Values.config.preventTeamChangeIfUnbalanced | quote }}
         - name: NUM_PLAYERS_DIFF_FOR_TEAM_CHANGE
-          value: {{ .Values.config.numPlayersDiffForTeamChange | int }}
+          value: {{ .Values.config.numPlayersDiffForTeamChange | quote }}
         - name: MAP_VOTING
           value: {{ .Values.config.mapVoting | quote }}
         - name: SERVER_MESSAGE_INTERVAL
-          value: {{ .Values.config.serverMessageInterval | int }}
+          value: {{ .Values.config.serverMessageInterval | quote }}
         - name: TK_AUTOKICK_ENABLED
           value: {{ .Values.config.tkAutokickEnabled | quote }}
         - name: ADMINS_B64_ENCODED
