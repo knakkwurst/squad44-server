@@ -60,7 +60,7 @@ You do not have to pass any variables that are marked as False for required if y
 | MAP_VOTING_B64_ENCODED | Base64 encoded MapVoting.cfg | None | False |
 | MOTD_B64_ENCODED | Base64 encoded MOTD.cfg | None | False |
 | SERVER_MESSAGE_B64_ENCODED | Base64 encoded ServerMessages.cfg | None | False |
-
+| SERVER_LOGO_B64_ENCODED | Base64 encoded ServerLogo.png | None | False |
 
 ### Docker
 
