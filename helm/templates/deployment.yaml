@@ -33,7 +33,7 @@ spec:
 {{ toYaml .Values.resources | indent 10 }}
         env:
         - name: SERVER_NAME
-          value: {{ .Values.config.serverName | int }}
+          value: {{ .Values.config.serverName | quote }}
         - name: GAME_PORT
           value: {{ .Values.config.gamePort | int }}
         - name: QUERY_PORT
