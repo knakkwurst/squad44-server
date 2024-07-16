@@ -108,7 +108,7 @@ if [ -n "${SERVER_LOGO_B64_ENCODED}" ]; then
     printf "${SERVER_LOGO_B64_ENCODED}" | base64 -d > $SQUAD44_CONFIG_PATH/ServerLogo.png
 fi
 
-chmod 755 $SQUAD44_CONFIG_PATH/*
+chmod 644 $SQUAD44_CONFIG_PATH/*
 
 # Build launch arguments
 echo "$(timestamp) INFO: Constructing launch arguments"
