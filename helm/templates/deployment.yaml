@@ -65,11 +65,11 @@ spec:
         - name: MAP_VOTING_B64_ENCODED
           value: {{ .Values.config.mapVotingB64Encoded | quote }}
         - name: MOTD_B64_ENCODED
-          value: {{ .Values.config.motdBase64Encoded | quote }}
+          value: {{ .Values.config.motdB64Encoded | quote }}
         - name: SERVER_MESSAGE_B64_ENCODED
           value: {{ .Values.config.serverMessageB64Encoded | quote }}
         - name: SERVER_LOGO_B64_ENCODED
-          value: {{ .Values.config.serverLogoBase64Encoded | quote }}
+          value: {{ .Values.config.serverLogoB64Encoded | quote }}
         ports:
         - name: game-port
           containerPort: {{ .Values.config.gamePort | int }}

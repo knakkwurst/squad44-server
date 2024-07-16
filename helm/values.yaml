@@ -34,6 +34,6 @@ config:
   adminsB64Encoded: ""
   mapRotationB64Encoded: ""
   mapVotingB64Encoded: ""
-  motdBase64Encoded: ""
+  motdB64Encoded: ""
   serverMessageB64Encoded: ""
   serverLogoB64Encoded: ""
