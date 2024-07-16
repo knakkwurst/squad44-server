@@ -91,13 +91,11 @@ fi
 if [ -n "${MAP_VOTING_B64_ENCODED}" ]; then
     echo "$(timestamp) INFO: Decoding MapVoting.cfg base64 and writing to file"
     printf "${MAP_VOTING_B64_ENCODED}" | base64 -d > $SQUAD44_CONFIG_PATH/MapVoting.cfg
-    chmod 775 $SQUAD44_CONFIG_PATH/MapVoting.cfg
 fi
 
 if [ -n "${MOTD_B64_ENCODED}" ]; then
     echo "$(timestamp) INFO: Decoding MOTD.cfg base64 and writing to file"
     printf "${MOTD_B64_ENCODED}" | base64 -d > $SQUAD44_CONFIG_PATH/MOTD.cfg
-    chmod 775 $SQUAD44_CONFIG_PATH/MOTD.cfg
 fi
 
 if [ -n "${SERVER_MESSAGE_B64_ENCODED}" ]; then
@@ -108,8 +106,9 @@ fi
 if [ -n "${SERVER_LOGO_B64_ENCODED}" ]; then
     echo "$(timestamp) INFO: Decoding ServerLogo.png base64 and writing to file"
     printf "${SERVER_LOGO_B64_ENCODED}" | base64 -d > $SQUAD44_CONFIG_PATH/ServerLogo.png
-    chmod 775 $SQUAD44_CONFIG_PATH/ServerLogo.png
 fi
+
+chmod 755 $SQUAD44_CONFIG_PATH/*
 
 # Build launch arguments
 echo "$(timestamp) INFO: Constructing launch arguments"
